@@ -13,12 +13,5 @@ jobs:
       env:
         CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
       run: |
-        # Fix NPM EACCESS: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
-        mkdir ~/.npm-global
-        npm config set prefix '~/.npm-global'
-        export PATH=~/.npm-global/bin:$PATH
-        source ~/.profile
-        # Do the Wrangler stuff
-        npm install --global wrangler
-        wrangler config
-        wrangler publish
+        npx wrangler config
+        npx wrangler publish
