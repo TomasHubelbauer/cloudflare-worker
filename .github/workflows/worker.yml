@@ -13,6 +13,6 @@ jobs:
       env:
         CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
       run: |
-        npm i -g wrangler
+        sudo npm i -g wrangler
         wrangler config
         wrangler publish
