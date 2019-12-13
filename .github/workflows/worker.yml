@@ -1,0 +1,17 @@
+name: worker
+on:
+  push:
+    branches:
+    # Limit to the `master` branch
+    - master
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Wrangler
+      env:
+        CF_API_TOKEN=${{secrets.CF_API_TOKEN}}
+      run: |
+        wrangler config
+        wrangler publish
