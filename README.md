@@ -89,3 +89,9 @@ jobs:
 ```
 
 That's it! Any changes to the repo will now replace the worker.
+
+## Secret Storage
+
+There is supposed to be a Secrets Vault service in the future, but for now KV is
+the way to go. The worker code is also a possibility, it is not reachable from
+the outside of Cloudflare.
