@@ -31,3 +31,29 @@
 ---
 
 - `wrangler generate test https://github.com/cloudflare/worker-template`
+- Set `account_id` in `wrangler.toml`
+- `cd test`
+- `wrangler preview`
+- Change the worker and retry - it shows up!
+- https://developers.cloudflare.com/workers/quickstart/#directing-requests
+- `wrangler preview --watch`
+- `wrangler publish`
+- Wait for the cache to clear
+- https://test.tomashubelbauer.workers.dev
+- 10k requests daily for free!
+
+---
+
+Worker works, now for storage:
+https://developers.cloudflare.com/workers/reference/storage/overview
+
+- Buy the unlimited plan ($5 USD and also bumps worker limits)
+- Go to the dashboard, Workers and KV
+- Create a new namespace, `test`
+- Go to the worker web editor in Cloudflare and click on KV
+- Add binding `kv` to the `test` namespace
+- Save and deploy
+
+## To-Do
+
+### Figure out how to deploy using Wrangler in GitHub Actions
