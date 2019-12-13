@@ -13,5 +13,5 @@ jobs:
       env:
         CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
       run: |
-        npx wrangler config
-        npx wrangler publish
+        npx @cloudflare/wrangler config
+        npx @cloudflare/wrangler publish
