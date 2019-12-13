@@ -50,10 +50,42 @@ https://developers.cloudflare.com/workers/reference/storage/overview
 - Buy the unlimited plan ($5 USD and also bumps worker limits)
 - Go to the dashboard, Workers and KV
 - Create a new namespace, `test`
-- Go to the worker web editor in Cloudflare and click on KV
-- Add binding `kv` to the `test` namespace
-- Save and deploy
+- Extend `wrangler.toml`:
 
-## To-Do
+```toml
+kv-namespaces = [
+  { binding = "kv", id = "" }
+]
+```
 
-### Figure out how to deploy using Wrangler in GitHub Actions
+Now the namespace is available under the variable name `kv` in the code.
+
+---
+
+GitHub Actions:
+
+Add the token from https://dash.cloudflare.com/profile/api-tokens to a secret
+named `CF_API_TOKEN`.
+
+Then use this workflow file:
+
+```yml
+name: worker
+on:
+  push:
+    branches:
+    # Limit to the `master` branch
+    - master
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Wrangler
+      env:
+        CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
+      run: |
+        npx @cloudflare/wrangler publish
+```
+
+That's it! Any changes to the repo will now replace the worker.
