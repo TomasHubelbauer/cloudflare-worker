@@ -7,7 +7,7 @@ addEventListener('fetch', event => {
  */
 async function handleRequest(request) {
   kv.put('date-and-time', new Date().toISOString());
-  return new Response('Hello! KV: ' + await kv.get('date-and-time'), {
+  return new Response('Hello :-) ' + await kv.get('date-and-time'), {
     headers: { 'content-type': 'text/plain' },
   })
 }
